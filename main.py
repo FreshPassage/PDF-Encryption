@@ -114,27 +114,32 @@ def main():
         
         choice = input("\nEnter your choice (1-4): ").strip()
         
-        if choice == '1':
+        if choice == '1' or choice == '2':
             input_path = input("Enter path to PDF file: ").strip()
             if not os.path.exists(input_path):
                 print("File not found!")
                 continue
             
-            output_path = input("Enter output path for encrypted PDF: ").strip()
+            overwrite = input("Overwrite original file? (y/n): ").strip().lower()
+            
+            if overwrite == 'y':
+                output_path = input_path
+            else:
+                output_folder = input("Enter folder path to save encrypted file: ").strip()
+                if not os.path.exists(output_folder):
+                    print("Folder does not exist!")
+                    continue
+                # Create output filename with "_encrypted" suffix
+                base_name = os.path.basename(input_path)
+                name, ext = os.path.splitext(base_name)
+                output_path = os.path.join(output_folder, name + "_encrypted" + ext)
+            
             password = input("Enter password for encryption: ")
             
-            encrypt_pdf_with_password(input_path, output_path, password)
-        
-        elif choice == '2':
-            input_path = input("Enter path to PDF file: ").strip()
-            if not os.path.exists(input_path):
-                print("File not found!")
-                continue
-            
-            output_path = input("Enter output path for encrypted file: ").strip()
-            password = input("Enter password for encryption: ")
-            
-            encrypt_file_with_fernet(input_path, output_path, password)
+            if choice == '1':
+                encrypt_pdf_with_password(input_path, output_path, password)
+            else:
+                encrypt_file_with_fernet(input_path, output_path, password)
         
         elif choice == '3':
             input_path = input("Enter path to encrypted file: ").strip()
@@ -153,6 +158,7 @@ def main():
         
         else:
             print("Invalid choice. Please try again.")
+
 
 if __name__ == "__main__":
     main()
