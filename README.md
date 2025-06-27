@@ -5,6 +5,7 @@ This Python script allows you to:
 - Encrypt/decrypt files using Fernet (AES-based) encryption.
 
 ## Features
+- Safe with local encryption
 - PBKDF2 password-derived keys
 - Strong file-level encryption using Fernet
 - Simple menu interface
