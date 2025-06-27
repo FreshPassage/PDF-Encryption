@@ -5,7 +5,6 @@ from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
-import getpass
 
 def generate_key_from_password(password, salt=None):
     """Generate encryption key from password using PBKDF2"""
