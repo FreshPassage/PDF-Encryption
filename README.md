@@ -1,4 +1,4 @@
-# PDF-Encryption
+# PDF-Encryption-Decryption
 
 This Python script allows you to:
 - Encrypt PDFs using native PDF password protection.
